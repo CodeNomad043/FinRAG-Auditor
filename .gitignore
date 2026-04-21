@@ -1,0 +1,7 @@
+# 忽略巨大的模型文件和数据库
+qwen2_5_7b_model/
+embedding_model/
+chroma_db/
+*.pdf
+__pycache__/
+.autodl/
