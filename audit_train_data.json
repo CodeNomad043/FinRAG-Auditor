@@ -1,0 +1,27 @@
+[
+  {
+    "instruction": "作为审计助手，请从文本中提取财务指标并以JSON格式输出。",
+    "input": "iPhone net sales $209,586 million, up 4%",
+    "output": "{\"product\":\"iPhone\",\"rev\":209586,\"change\":\"+4%\"}"
+  },
+  {
+    "instruction": "作为审计助手，请从文本中提取财务指标并以JSON格式输出。",
+    "input": "iPad net sales $28,023 million, up 5%",
+    "output": "{\"product\":\"iPad\",\"rev\":28023,\"change\":\"+5%\"}"
+  },
+  {
+    "instruction": "作为审计助手，请从文本中提取财务指标并以JSON格式输出。",
+    "input": "Mac net sales $33,708 million, up 12%",
+    "output": "{\"product\":\"Mac\",\"rev\":33708,\"change\":\"+12%\"}"
+  },
+  {
+    "instruction": "作为审计助手，请从文本中提取财务指标并以JSON格式输出。",
+    "input": "Services net sales $109,158 million, up 14%",
+    "output": "{\"product\":\"Services\",\"rev\":109158,\"change\":\"+14%\"}"
+  },
+  {
+    "instruction": "作为审计助手，请从文本中提取财务指标并以JSON格式输出。",
+    "input": "Net income $112,010 million in 2025",
+    "output": "{\"metric\":\"Net Income\",\"val\":112010,\"unit\":\"M\"}"
+  }
+]
