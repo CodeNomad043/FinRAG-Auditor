@@ -4,4 +4,12 @@ embedding_model/
 chroma_db/
 *.pdf
 __pycache__/
-.autodl/
+.autodl/*.pth
+*.bin
+
+qwen2_5_7b_model/
+qwen_lora_checkpoint/
+qwen_audit_merged/
+bge-small-zh-v1.5/
+*.pdf
+*.pyc
