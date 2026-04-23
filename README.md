@@ -21,7 +21,9 @@
 
 支持用户动态上传 PDF 财报，系统实时构建索引。通过双阶检索精准提取财务指标，并提供 **Source Trace（溯源片段）** 展示，确保审计结论的绝对可信。
 
-  <video src="https://github.com/CodeNomad043/FinRAG-Auditor/releases/download/v1.0.0/Fin-RAG.mp4" controls="controls" width="80%" autoplay loop muted>你的浏览器不支持视频播放。</video>
+<p align="center">
+  <img src="Fin-RAG.gif" width="80%" alt="Project Demo">
+</p>
 
 *(注：如果视频无法直接播放，请点击仓库根目录的 Fin-RAG.mp4 文件进行预览)*
 
@@ -119,4 +121,3 @@ streamlit run app.py --server.port 8501 --server.address 0.0.0.0
 ```
 
 访问 `http://localhost:8501` 即可体验。通过侧边栏上传任意 PDF 财报文件，点击构建索引后，即可发起带有数据溯源的深度审计查询。
-```
