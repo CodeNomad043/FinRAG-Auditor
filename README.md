@@ -21,9 +21,8 @@
 
 支持用户动态上传 PDF 财报，系统实时构建索引。通过双阶检索精准提取财务指标，并提供 **Source Trace（溯源片段）** 展示，确保审计结论的绝对可信。
 
-<p align="center">
-  <video src="https://github.com/CodeNomad043/FinRAG-Auditor/releases/download/v1.0.0/Fin-RAG.mp4" controls="controls" width="80%" autoplay loop muted></video>
-</p>
+  <video src="https://github.com/CodeNomad043/FinRAG-Auditor/releases/download/v1.0.0/Fin-RAG.mp4" controls="controls" width="80%" autoplay loop muted>你的浏览器不支持视频播放。</video>
+
 *(注：如果视频无法直接播放，请点击仓库根目录的 Fin-RAG.mp4 文件进行预览)*
 
 ### 2. 微调前后指令遵循度对比 (A/B Test)
