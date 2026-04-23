@@ -1,19 +1,17 @@
-# 深度学习模型与权重
-qwen2_5_7b_model/
-qwen_lora_checkpoint/
-qwen_audit_merged/
-bge-small-zh-v1.5/
-embedding_model/
-.autodl/
-*.pth
-*.bin
+# 忽略环境变量和密钥
+.env
 
-# 数据存储与缓存
-chroma_db/
+# 忽略临时上传目录和缓存
+temp_uploads/
 __pycache__/
 *.pyc
-*.json
-*.pdf
 
-# 敏感信息与环境变量
-.env
+# 忽略超大的模型权重文件
+*.safetensors
+*.bin
+*.pth
+*.pt
+qwen_lora_checkpoint/
+
+# 忽略日志文件
+*.log
