@@ -35,9 +35,9 @@ class FinancialAuditor:
 
         # 2. 全局 RAG 参数调优 (核心修改点)
         # 增加块大小，确保财务报表中的表格行不会被切断
-        Settings.chunk_size = 1024 
+        Settings.chunk_size = 768 
         # 增加重叠度，保证上下文连续性
-        Settings.chunk_overlap = 100 
+        Settings.chunk_overlap = 50 
 
         # 3. 初始化 Langfuse 处理器
         self.langfuse_callback_handler = LlamaIndexCallbackHandler()
@@ -79,7 +79,7 @@ class FinancialAuditor:
         
         # [优化点]：将检索深度从 5 提升到 8，并使用 compact 模式合并文本
         self.query_engine = self.index.as_query_engine(
-            similarity_top_k=8,
+            similarity_top_k=4,
             response_mode="compact" 
         )
 
