@@ -64,23 +64,23 @@ class FinancialAuditor:
         self.query_engine = None
         self._prepare_index()
 
-    def _prepare_index(self):
-        """加载数据并构建索引"""
-        pdf_path = "/root/autodl-tmp/apple_2025_10k.pdf"
+    def _prepare_index(self, pdf_path=None):
+        """支持动态加载 PDF 文档"""
+        # 如果没有传入路径，则默认加载原来的 Apple 财报
+        if pdf_path is None:
+            pdf_path = "/root/autodl-tmp/apple_2025_10k.pdf"
+            
         if not os.path.exists(pdf_path):
             print(f"❌ 错误：未找到文件 {pdf_path}")
             return
 
-        print(f"📚 正在进行深度索引 (ChunkSize: 1024)...")
+        print(f"📚 正在索引文档: {pdf_path}")
         documents = SimpleDirectoryReader(input_files=[pdf_path]).load_data()
-        
-        # 构建索引时会自动应用 Settings 中的 chunk_size
         self.index = VectorStoreIndex.from_documents(documents)
-        
-        # [优化点]：将检索深度从 5 提升到 8，并使用 compact 模式合并文本
+        # 保持你之前调优好的参数
         self.query_engine = self.index.as_query_engine(
-            similarity_top_k=4,
-            response_mode="compact" 
+            similarity_top_k=5,
+            response_mode="compact"
         )
 
     def audit_task(self, query_str):
