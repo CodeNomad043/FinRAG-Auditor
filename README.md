@@ -21,7 +21,9 @@
 
 支持用户动态上传 PDF 财报，系统实时构建索引。通过双阶检索精准提取财务指标，并提供 **Source Trace（溯源片段）** 展示，确保审计结论的绝对可信。
 
-  <video src="https://github.com/CodeNomad043/FinRAG-Auditor/releases/download/v1.0.0/Fin-RAG.mp4" controls="controls" width="80%" autoplay loop muted>你的浏览器不支持视频播放。</video>
+<p align="center">
+  <img src="Fin-RAG.gif" width="80%" alt="Project Demo">
+</p>
 
 *(注：如果视频无法直接播放，请点击仓库根目录的 Fin-RAG.mp4 文件进行预览)*
 
@@ -65,6 +67,9 @@
 * **痛点**：缺乏直观的手段来验证微调权重是否真的比原始模型好用，反复跑脚本测试效率低下。
 * **实现**：利用 Peft 的 `with model.disable_adapter():` 上下文管理器，实现单底座、多 LoRA 权重的零延迟切换。搭建 Gradio A/B Test 工作台，直观展示微调带来的指令遵循度（Instruction Following）跃升。
 
+<img width="1665" height="615" alt="pay" src="https://github.com/user-attachments/assets/cf08828e-8efd-455b-b3ab-29cce23771f5" />
+
+
 ### ✅ Phase 4: 双阶 RAG 架构引入 (Two-Stage RAG Pipeline)
 * **痛点**：财报篇幅极长（数百页），且存在大量相似词汇（如“研发费用”与“研发信用额度”），传统单一向量检索极易产生语义漂移，导致审计错误。
 * **实现**：弃用单调的 Embedding 检索，引入 **Two-Stage Retrieval** 架构。先通过 `BGE-Small` 扩大召回范围（Top-12），随后引入 `BGE-Reranker-Base` 进行精准交叉编码打分，截取最相关的 Top-3 喂入大模型，将准确率提升至极高水平。
@@ -72,6 +77,11 @@
 ### ✅ Phase 5: 全链路追踪与可观测性 (Full-Trace Observability)
 * **痛点**：RAG 系统如同“黑盒”，开发者难以量化评估检索命中的准确率、Token 消耗成本以及大模型各节点的推理延迟。
 * **实现**：无缝接入 **Langfuse** 监控平台。对检索器（Retriever）、重排序器（Reranker）以及大模型生成（Generation）每一环进行埋点，实现对耗时、打分和 Token 成本的全景可视化跟踪。
+
+  <img width="1358" height="781" alt="cost" src="https://github.com/user-attachments/assets/b906c8bb-94e4-4e3c-a5c0-1ac7afded285" />
+  
+<img width="1667" height="557" alt="time" src="https://github.com/user-attachments/assets/2b34676a-2c8d-4d07-8292-0a42d3998e2f" />
+
 
 ### ✅ Phase 6: 工业级 Streamlit 应用闭环交付 (Industrial Application Deployment)
 * **痛点**：此前的 Demo 无法处理多文档动态上传，且缺乏审计场景中最核心的“证据展示”环节。
@@ -112,11 +122,31 @@ LANGFUSE_HOST="[https://(us.)cloud.langfuse.com](https://(us.)cloud.langfuse.com
 
 ### 3. 启动审计工作台
 
-确保已下载对应的底座模型与 LoRA 权重，然后在终端运行：
+先开启加速，确保快速响应：
+
+```bash
+source /etc/network_turbo
+```
+
+在终端启动vLLm：
+
+```bash
+VLLM_USE_V1=0 VLLM_ATTENTION_BACKEND=FLASH_ATTN /root/miniconda3/bin/python -m vllm.entrypoints.openai.api_server \
+    --model /root/autodl-tmp/qwen_audit_merged \
+    --served-model-name qwen-audit \
+    --gpu-memory-utilization 0.85 \
+    --max-model-len 4096 \
+    --trust-remote-code \
+    --enforce-eager \
+    --port 8000 \
+    --guided-decoding-backend lm-format-enforcer \
+    --disable-frontend-multiprocessing
+```
+
+确保已下载对应的底座模型与 LoRA 权重，然后新建另一个终端运并行：
 
 ```bash
 streamlit run app.py --server.port 8501 --server.address 0.0.0.0
 ```
 
 访问 `http://localhost:8501` 即可体验。通过侧边栏上传任意 PDF 财报文件，点击构建索引后，即可发起带有数据溯源的深度审计查询。
-```
