@@ -1,17 +1,21 @@
-# 忽略环境变量和密钥
-.env
-
-# 忽略临时上传目录和缓存
-temp_uploads/
-__pycache__/
-*.pyc
-
-# 忽略超大的模型权重文件
-*.safetensors
-*.bin
-*.pth
-*.pt
+# 忽略所有模型权重文件夹
+qwen2_5_7b_model/
+qwen_audit_merged/
 qwen_lora_checkpoint/
 
-# 忽略日志文件
-*.log
+# 忽略向量数据库的物理存储
+volumes/
+chroma_db/
+milvus_data/
+
+# 忽略数据文件（如果有大量 PDF，建议也忽略，只传代码）
+apple_2025_10k.pdf
+audit_data.json
+# data/  <-- 如果 data 文件夹里文件很多，也可以取消注释这一行
+
+# 忽略环境配置和缓存
+.autodl/
+__pycache__/
+.venv/
+.env
+*.tar
