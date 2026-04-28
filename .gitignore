@@ -4,6 +4,7 @@ qwen_audit_merged/
 qwen_lora_checkpoint/
 
 # 忽略向量数据库的物理存储
+data/
 volumes/
 chroma_db/
 milvus_data/
@@ -19,3 +20,6 @@ __pycache__/
 .venv/
 .env
 *.tar
+# 忽略日志和临时文件
+*.log
+*.pdf

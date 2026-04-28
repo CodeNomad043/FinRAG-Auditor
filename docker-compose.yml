@@ -1,18 +1,20 @@
-version: '3.5'
-
+# docker-compose.yml
 services:
   etcd:
     container_name: milvus-etcd
-    image: milvusdb/etcd:v3.5.5
+    # 1. 将 etcd 镜像替换为新的官方推荐镜像
+    image: bitnami/etcd:3.5.5
     environment:
+      # 2. 启动命令变了，环境变量也需要相应调整
       - ETCD_AUTO_COMPACTION_MODE=revision
       - ETCD_AUTO_COMPACTION_RETENTION=1000
       - ETCD_QUOTA_BACKEND_BYTES=4294967296
       - ETCD_SNAPSHOT_COUNT=50000
     volumes:
       - ./volumes/etcd:/etcd
+    # 3. 新的 etcd 镜像启动命令不同
     command: etcd -advertise-client-urls=http://127.0.0.1:2379 -listen-client-urls http://0.0.0.0:2379 --data-dir /etcd
-    
+
   minio:
     container_name: milvus-minio
     image: minio/minio:latest
@@ -22,11 +24,14 @@ services:
     volumes:
       - ./volumes/minio:/minio_data
     command: minio server /minio_data --console-address ":9001"
-    
+
   standalone:
     container_name: milvus-standalone
-    image: milvusdb/milvus:v2.3.0
+    # Milvus 2.3.0 是比较旧的版本，建议拉取最新版
+    image: milvusdb/milvus:latest
     command: ["milvus", "run", "standalone"]
+    security_opt:
+      - seccomp:unconfined
     environment:
       ETCD_ENDPOINTS: etcd:2379
       MINIO_ADDRESS: minio:9000
@@ -41,9 +46,10 @@ services:
 
   attu:
     container_name: milvus-attu
-    image: zilliz/attu:v2.3.0
+    # 4. Attu 的版本建议和 Milvus 保持一致，改为 latest
+    image: zilliz/attu:latest
     environment:
-      MILVUS_URL: milvus-standalone:19530
+      MILVUS_URL: standalone:19530
     ports:
       - "8000:3000"
     depends_on:
