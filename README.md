@@ -61,6 +61,7 @@
 
 ### 3. 复合指令 Agent 演示
 用户指令：“苹果 2024 年研发投入是多少？按现在股价买 100 股需要多少钱？”
+
 Agent 路径：
 
 search_docs ➡️ 提取财报数字 $31,370M
@@ -73,6 +74,7 @@ financial_calculator ➡️ 自动化核算总额
 
 例如：
 用户指令：“帮我查一下苹果现在的股价，然后帮我算一下买 50 股要多少钱？”
+
 Agent回答：
 
 <img width="796" height="684" alt="屏幕截图 2026-04-28 183942" src="https://github.com/user-attachments/assets/87ec333c-657b-4304-97f4-a0d9c85cc456" />
@@ -143,6 +145,7 @@ Agent回答：
 高精度计算工具：自建 Python 计算引擎，彻底根除 LLM 在处理大规模财务数据时的“算数错误”。
 
 端侧算力适配 (3050Ti 4GB)：针对入门级显存，优化 qwen2.5:3b 的 ReAct 协议，通过 Stop Sequence 截断技术，在极低算力下实现了稳定的 Agent 逻辑循环。
+
 ---
 
 <img width="591" height="134" alt="屏幕截图 2026-04-28 010148" src="https://github.com/user-attachments/assets/5fe0924c-4651-4b34-9c52-e86aed3665f8" />
@@ -263,4 +266,4 @@ http://localhost:8000
 
 ---
 
-硬件适配描述：本项目用的 3050Ti 的适配，如果显卡支持更高配置可以更换更大参数量的模型。
+硬件适配描述：本项目用的 3050Ti（4G） 的适配，如果显卡支持更高配置可以更换更大参数量的模型。
