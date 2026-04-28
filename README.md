@@ -8,10 +8,10 @@
 </p>
 
 <p align="center">
-  <img src="[https://img.shields.io/badge/Architecture-Agentic_RAG-red](https://img.shields.io/badge/Architecture-Agentic_RAG-red)" alt="Architecture">
-  <img src="[https://img.shields.io/badge/Agent_Framework-ReAct-yellow](https://img.shields.io/badge/Agent_Framework-ReAct-yellow)" alt="Agent">
-  <img src="[https://img.shields.io/badge/Vector_DB-Milvus-blue](https://img.shields.io/badge/Vector_DB-Milvus-blue)" alt="Milvus">
-  <img src="[https://img.shields.io/badge/Real--time_Data-yfinance-lightgrey](https://img.shields.io/badge/Real--time_Data-yfinance-lightgrey)" alt="yfinance">
+  <img src="https://img.shields.io/badge/Architecture-Agentic_RAG-red" alt="Architecture">
+  <img src="https://img.shields.io/badge/Agent_Framework-ReAct-yellow" alt="Agent">
+  <img src="https://img.shields.io/badge/Vector_DB-Milvus-blue" alt="Milvus">
+  <img src="https://img.shields.io/badge/Real--time_Data-yfinance-lightgrey" alt="yfinance">
 </p>
 
 ## 📌 项目愿景 (Project Vision)
@@ -149,7 +149,7 @@ Agent回答：
 
 <img width="1684" height="861" alt="屏幕截图 2026-04-28 213127" src="https://github.com/user-attachments/assets/1172dab8-ea99-4814-a456-30ac9873d1d3" />
 
-
+---
 
 🛠️ 技术栈 (Tech Stack)
 LLM: Qwen2.5-7B (Fine-tuned) / Qwen2.5-3B (Agent reasoning)
@@ -207,6 +207,7 @@ docker ps
 # 启动docker
 docker compose up -d
 ```
+如下图：
 <img width="823" height="121" alt="屏幕截图 2026-04-28 010119" src="https://github.com/user-attachments/assets/8347d828-737a-4322-a156-b59304f3ef74" />
 
 
